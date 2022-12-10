@@ -3,6 +3,7 @@ package com.donjerzy.demo.controller
 import com.donjerzy.demo.entity.Department
 import com.donjerzy.demo.service.DepartmentService
 import com.donjerzy.demo.service.DepartmentServiceImpl
+import jakarta.validation.Valid
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -22,7 +23,7 @@ class DepartmentController {
 
 
     @PostMapping("/save-department")
-    fun saveDepartment(@RequestBody department: Department): Department{
+    fun saveDepartment(@Valid @RequestBody department: Department): Department{
         return departmentServiceImpl.saveDepartment(department)
 
     }
