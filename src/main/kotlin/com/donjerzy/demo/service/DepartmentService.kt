@@ -13,4 +13,5 @@ interface DepartmentService {
      fun deleteDepartmentById(id: Long)
 
      fun updateDepartmentRecord(id: Long, department: Department):Department
+      fun fetchDepartmentByName(name: String): Department
 }

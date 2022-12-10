@@ -48,6 +48,11 @@ class DepartmentController {
         return departmentServiceImpl.updateDepartmentRecord(id,department)
     }
 
+    @GetMapping("/fetch-department-by-name/{name}")
+    fun fetchDepartmentByName(@PathVariable name: String): Department{
+        return departmentServiceImpl.fetchDepartmentByName(name)
+    }
+
 
 
 

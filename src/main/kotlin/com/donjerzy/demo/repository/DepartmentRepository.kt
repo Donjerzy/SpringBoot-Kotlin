@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface DepartmentRepository: JpaRepository<Department,Long> {
+
+    fun findByDepartmentName(departmentName:String):Department
+
+    fun findByDepartmentNameIgnoreCase(departmentName:String):Department
 }

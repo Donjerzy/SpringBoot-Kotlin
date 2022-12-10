@@ -4,13 +4,15 @@ import com.donjerzy.demo.entity.Department
 import com.donjerzy.demo.repository.DepartmentRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.*
+
 
 @Service
 class DepartmentServiceImpl : DepartmentService {
 
     @Autowired
     lateinit var departmentRepository: DepartmentRepository
+
+
 
 
     override fun saveDepartment(department: Department): Department{
@@ -46,9 +48,12 @@ class DepartmentServiceImpl : DepartmentService {
 
         return departmentRepository.save(departmentInstance)
 
+    }
 
-
+    override fun fetchDepartmentByName(name: String): Department {
+        return departmentRepository.findByDepartmentNameIgnoreCase(name)
 
     }
+
 
 }
