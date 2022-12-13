@@ -1,9 +1,12 @@
 package com.donjerzy.demo.controller
 
 import com.donjerzy.demo.entity.Department
+import com.donjerzy.demo.error.BlankDepartmentNameException
 import com.donjerzy.demo.service.DepartmentService
 import com.donjerzy.demo.service.DepartmentServiceImpl
 import jakarta.validation.Valid
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -21,15 +24,21 @@ class DepartmentController {
     @Autowired
     lateinit var departmentServiceImpl:DepartmentServiceImpl
 
+    // logger used to debug
+    var logger: Logger = LoggerFactory.getLogger(DepartmentController::class.java)
 
     @PostMapping("/save-department")
-    fun saveDepartment(@Valid @RequestBody department: Department): Department{
-        return departmentServiceImpl.saveDepartment(department)
 
-    }
+        fun saveDepartment(@RequestBody department: Department): Department {
+            return departmentServiceImpl.saveDepartment(department)
+
+        }
+
+
 
     @GetMapping("/all-departments")
     fun getDepartmentsList():List<Department>{
+        logger.info("Inside all departments")
         return departmentServiceImpl.getAllDepartments()
     }
 

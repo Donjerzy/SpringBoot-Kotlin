@@ -1,9 +1,12 @@
 package com.donjerzy.demo.service
 
 import com.donjerzy.demo.entity.Department
+import com.donjerzy.demo.error.BlankDepartmentNameException
+import com.donjerzy.demo.error.DepartmentNotFoundException
 import com.donjerzy.demo.repository.DepartmentRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.Optional
 
 
 @Service
@@ -16,7 +19,13 @@ class DepartmentServiceImpl : DepartmentService {
 
 
     override fun saveDepartment(department: Department): Department{
-        return departmentRepository.save(department)
+
+        if(department.departmentName.isBlank()){
+            throw BlankDepartmentNameException("Department Name cannot be blank")
+        }else {
+            return departmentRepository.save(department)
+        }
+
     }
 
     override fun getAllDepartments(): List<Department> {
@@ -24,7 +33,13 @@ class DepartmentServiceImpl : DepartmentService {
     }
 
     override fun getDepartmentByID(id: Long): Department {
-        return departmentRepository.findById(id).get()
+       val dep : Optional<Department> = departmentRepository.findById(id)
+       if(!dep.isPresent){
+           throw DepartmentNotFoundException("Department does not exist")
+       }else{
+           return dep.get()
+       }
+
     }
 
     override fun deleteDepartmentById(id: Long) {

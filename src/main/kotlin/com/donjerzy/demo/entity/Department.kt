@@ -14,9 +14,6 @@ data class Department(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var departmentID:Long,
-
-   @field:NotBlank(message = "Department cannot be left blank")
-   @field:Max(5, message = "Department name should not have more than 5 characters")
     var departmentName:String,
     var departmentAddress:String,
     var departmentCode:String
