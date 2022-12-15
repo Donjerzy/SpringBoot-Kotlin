@@ -6,9 +6,6 @@ import org.springframework.boot.test.context.SpringBootTest
 @SpringBootTest
 class Tutorial1ApplicationTests {
 
-	@Test
-	fun contextLoads() {
-	}
 
 
 }
