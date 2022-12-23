@@ -1,5 +1,6 @@
 package com.donjerzy.demo.controller
 
+import com.donjerzy.demo.entity.Created
 import com.donjerzy.demo.entity.Department
 import com.donjerzy.demo.error.BlankDepartmentNameException
 import com.donjerzy.demo.service.DepartmentService
@@ -8,6 +9,7 @@ import jakarta.validation.Valid
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -33,6 +35,19 @@ class DepartmentController {
             return departmentServiceImpl.saveDepartment(department)
 
         }
+
+
+    @PostMapping("/alt-save")
+    fun savDepartment(@RequestBody department: Department): ResponseEntity<Any> {
+        val dep = departmentServiceImpl.saveDepartment(department)
+
+        val depCreated: Created = Created(200,"Department has successfully been created",dep)
+
+        return ResponseEntity.ok().body(depCreated)
+
+
+
+    }
 
 
 
