@@ -1,0 +1,46 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+
+---
+
+spring:
+  profiles: dev
+  jpa:
+    properties:
+      hibernate:
+        globally_quoted_identifiers_skip_column_definitions: 'true'
+        globally_quoted_identifiers: 'true'
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/dcbapp
+    password: bilha
+welcome:
+  message: Welcome to spring boot
+
+---
+
+spring:
+  profiles: test
+  jpa:
+    properties:
+      hibernate:
+        globally_quoted_identifiers_skip_column_definitions: 'true'
+        globally_quoted_identifiers: 'true'
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/dcbapp
+    password: bilha
+welcome:
+  message: Welcome to spring boot
